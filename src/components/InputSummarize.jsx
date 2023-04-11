@@ -34,7 +34,7 @@ const InputSummarize = () => {
             <div className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4">
                 <div className="input-container">
                     <textarea
-                        className="input-text px-3 w-full py-2 border border-gray-400 rounded-md margin-bottom-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        className="rounded-md border input-text px-3 w-full py-2 margin-bottom-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
                         type="text"
                         placeholder="Enter your text to summarize here..."
                     />
@@ -59,9 +59,35 @@ const InputSummarize = () => {
                 </div>
 
                 {summary &&
-                    <div className="p-4 border border-gray-400 rounded-md mt-2">
-                        {summary}
-                    </div>
+                    <>
+                        <div
+                            className="rounded-2xl border border-blue-100 bg-white p-4 shadow-lg sm:p-6 lg:p-8 mt-2"
+                            role="alert"
+                        >
+                            <div className="flex items-center gap-4">
+                                <span className="shrink-0 rounded-full bg-blue-400 p-2 text-white">
+                                    <svg
+                                        className="h-4 w-4"
+                                        fill="currentColor"
+                                        viewbox="0 0 20 20"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                    >
+                                        <path
+                                            clipRule="evenodd"
+                                            d="M18 3a1 1 0 00-1.447-.894L8.763 6H5a3 3 0 000 6h.28l1.771 5.316A1 1 0 008 18h1a1 1 0 001-1v-4.382l6.553 3.276A1 1 0 0018 15V3z"
+                                            fillRule="evenodd"
+                                        />
+                                    </svg>
+                                </span>
+
+                                <p className="font-medium sm:text-lg">Your summary!</p>
+                            </div>
+
+                            <p className="mt-4 text-gray-500">
+                                {summary}
+                            </p>
+                        </div>
+                    </>
                 }
             </div>
         </div>
