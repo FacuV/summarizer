@@ -1,10 +1,13 @@
 import { useEffect, useState } from "react";
 import { getSummary } from "../utils/services/getSummary";
+import { useAuth0 } from "@auth0/auth0-react";
 
 const InputSummarize = () => {
     const [inputValue, setInputValue] = useState();
     const [summary, setSummary] = useState('');
     const [isLoading, setIsLoading] = useState(false)
+
+    const { isAuthenticated } = useAuth0()
 
     const handleSummarize = () => {
         const inputElements = document.querySelectorAll('textarea');
@@ -39,10 +42,11 @@ const InputSummarize = () => {
                         placeholder="Enter your text to summarize here..."
                     />
                     <button
-                        className="submit-button px-3 py-2 bg-blue-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        className={`submit-button px-3 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500
+                            ${!isAuthenticated || isLoading ? 'bg-gray-500 text-gray-300' : 'bg-blue-500 text-white'}`}
                         type="submit"
                         onClick={handleSummarize}
-                        disabled={isLoading}
+                        disabled={!isAuthenticated || isLoading}
                     >
                         Resume this
                     </button>
