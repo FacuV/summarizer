@@ -5,7 +5,7 @@ import NavBar from "./components/NavBar.jsx"
 function App() {
 
     return (
-        <main>
+        <main className="flex flex-col min-h-screen">
             <NavBar />
             <div className="flex justify-center mt-5">
                 <img className="w-32" src="https://cdn-icons-png.flaticon.com/512/17/17169.png" alt="logo" />
@@ -15,7 +15,9 @@ function App() {
             </h1>
             <p className="mt-2 mb-5 text-center text-gray-400">Resume your texts quickly and accurately</p>
             <InputSummarize />
+        <footer className="flex mt-auto w-full">
             <Footer />
+        </footer>
         </main>
     )
 }

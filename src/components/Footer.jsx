@@ -1,6 +1,6 @@
 const Footer = () => {
     return (
-        <footer className="fixed bg-white rounded-lg shadow m-4 dark:bg-gray-800 w-full bottom-0 p-5">
+        <div className="bg-white w-full shadow m-4 dark:bg-gray-800 p-5">
             <div className="w-full mx-auto max-w-screen-xl p-4 md:flex md:items-center md:justify-between">
                 <span className="text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2023 <a target="_blank" href="https://www.linkedin.com/in/facundo-vicente-4054301a6/?lipi=urn%3Ali%3Apage%3Ad_flagship3_feed%3BQxWz5R8PQg6mChqT8QqCvQ%3D%3D" className="hover:underline">Facundo Vicente™</a>. All Rights Reserved.
                 </span>
@@ -52,7 +52,7 @@ const Footer = () => {
                     </li>
                 </ul>
             </div>
-        </footer>
+        </div>
     )
 }
 

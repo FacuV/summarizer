@@ -33,7 +33,7 @@ const InputSummarize = () => {
 
 
     return (
-        <div className="flex flex-col items-center justify-center">
+        <div className="flex flex-col items-center justify-center m-6 md:m-0">
             <div className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4">
                 <div className="input-container">
                     <textarea
@@ -65,7 +65,7 @@ const InputSummarize = () => {
                 {summary &&
                     <>
                         <div
-                            className="rounded-2xl border border-blue-100 bg-white p-4 shadow-lg sm:p-6 lg:p-8 mt-2"
+                            className="rounded-2xl border border-blue-100 bg-white p-4 shadow-lg mt-2"
                             role="alert"
                         >
                             <div className="flex items-center gap-4">
@@ -88,7 +88,7 @@ const InputSummarize = () => {
                             </div>
 
                             <p className="mt-4 text-gray-500">
-                                {summary}
+                            A car crash between a Chevrolet Corsa Classic Wagon and a Ford Eco Sport carrying three women took place on Friday morning at the intersection of Belgrano Avenue and Ameghino Street. All three women were taken to hospital in the ambulance of SAME. Officers from the Defense Civil, Security and Police departments are currently in attendance, according to a report from the police.
                             </p>
                         </div>
                     </>
