@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
 import { getSummary } from "../utils/services/getSummary";
 import { useAuth0 } from "@auth0/auth0-react";
+import { Tooltip } from 'react-tippy';
+import 'react-tippy/dist/tippy.css';
+import 'tippy.js/themes/light.css';
 
 const InputSummarize = () => {
     const [inputValue, setInputValue] = useState();
@@ -14,6 +17,10 @@ const InputSummarize = () => {
         const inputValues = Array.from(inputElements).map((input) => input.value);
         const summaryText = inputValues.join(', ');
         setInputValue(summaryText);
+    };
+
+    const clearSummary = () => {
+        setSummary('');
     };
 
     useEffect(() => {
@@ -31,25 +38,41 @@ const InputSummarize = () => {
         }
     }, [inputValue])
 
-
+    const isDisabled = !isAuthenticated || isLoading
     return (
         <div className="flex flex-col items-center justify-center m-6 md:m-0">
-            <div className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4">
+            <div className="w-3/4">
                 <div className="input-container">
                     <textarea
                         className="rounded-md border input-text px-3 w-full py-2 margin-bottom-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
                         type="text"
                         placeholder="Enter your text to summarize here..."
                     />
-                    <button
-                        className={`submit-button px-3 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500
-                            ${!isAuthenticated || isLoading ? 'bg-gray-500 text-gray-300' : 'bg-blue-500 text-white'}`}
-                        type="submit"
-                        onClick={handleSummarize}
-                        disabled={!isAuthenticated || isLoading}
-                    >
-                        Resume this
-                    </button>
+                    <div className="flex justify-between">
+                        <Tooltip
+                            disabled={!isDisabled}
+                            title="You must be logged in to use this function"
+                        >
+                            <button
+                                className={`submit-button px-3 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500
+                                ${!isAuthenticated || isLoading ? 'bg-gray-500 text-gray-300' : 'bg-blue-500 text-white'}`}
+                                type="submit"
+                                onClick={handleSummarize}
+                                disabled={isDisabled}
+                                >
+                                Resume this
+                            </button>
+                        </Tooltip>
+                        {summary && 
+                            <button
+                                className={`px-3 py-2 bg-gray-300 rounded-md focus:outline-none focus:ring-2`}
+                                onClick={clearSummary}
+                                disabled={isDisabled}
+                            >
+                                Clear
+                            </button>
+                        }
+                    </div>
                     {isLoading &&
                         <div role="status" className="flex justify-center">
                             <svg aria-hidden="true" className="w-8 h-8 mr-2 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -88,7 +111,7 @@ const InputSummarize = () => {
                             </div>
 
                             <p className="mt-4 text-gray-500">
-                            A car crash between a Chevrolet Corsa Classic Wagon and a Ford Eco Sport carrying three women took place on Friday morning at the intersection of Belgrano Avenue and Ameghino Street. All three women were taken to hospital in the ambulance of SAME. Officers from the Defense Civil, Security and Police departments are currently in attendance, according to a report from the police.
+                                {summary}
                             </p>
                         </div>
                     </>
